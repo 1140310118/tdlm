@@ -13,9 +13,9 @@ bash/pretrain.sh -c 0 -l 20 -p 'layerwise_rope' -e transformer
 
 ### requirements
 
-python3
-pytorch-1.8.1
-pytorch_lightning-1.4.9
-transformers-4.6.1
-einops-0.3.2
-performer_pytorch-1.1.0
+- python3
+- pytorch-1.8.1
+- pytorch_lightning-1.4.9
+- transformers-4.6.1
+- einops-0.3.2
+- performer_pytorch-1.1.0
