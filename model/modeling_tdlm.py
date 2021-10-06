@@ -115,11 +115,6 @@ class RelativePositionEmbedding(nn.Module):
 
         elif position_embedding_type == 'contextual(2)':
             self.embeddings = nn.Embedding(relative_attention_num_buckets, hidden_size)
-            # self.to_kr = nn.Linear(hidden_size, hidden_size, bias=False)
-            # self.to_qr = nn.Linear(hidden_size, hidden_size, bias=False)
-
-            # self.to_kr.weight = to_k.weight
-            # self.to_qr.weight = to_q.weight
 
     def compute_bias(self, q, k, to_q=None, to_k=None):
         """
@@ -293,30 +288,6 @@ class Attention(nn.Module):
         self.to_out  = nn.Linear(config.hidden_size, config.hidden_size, bias=False)
         # self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.dropout = StableDropout(config.hidden_dropout_prob)
-
-        # if config.position_embedding_type == 'layerwise_learnable':
-        #     self.position_embeddings = LearnableAbsolutePositionEmbedding(
-        #         max_position_embeddings=config.max_position_embeddings, 
-        #         hidden_size=dim_heads
-        #     )
-        
-        # elif config.position_embedding_type in ('layerwise_fixed', 'layerwise_rope'):
-
-        #     self.position_embeddings = FixedAbsolutePositionEmbedding(
-        #         max_position_embeddings=config.max_position_embeddings,
-        #         hidden_size=dim_heads,
-        #         position_embedding_type=config.position_embedding_type.split('_')[-1],
-        #     )
-
-        # elif config.position_embedding_type in ('layerwise_bias', 'layerwise_contextual(1)', 'layerwise_contextual(2)'):
-        #     self.position_embeddings = RelativePositionEmbedding( 
-        #          config.relative_attention_num_buckets, 
-        #          config.num_attention_heads, 
-        #          config.hidden_size, 
-        #          position_embedding_type=config.position_embedding_type.split('_')[-1],
-        #          to_q=self.to_q, 
-        #          to_k=self.to_k
-        #     )
 
         if config.encoder_layer == 'transformer':
             self.attn_fn = TransformerAttention(config)
