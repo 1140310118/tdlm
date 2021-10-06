@@ -1,8 +1,8 @@
 # tdlm
 实现了Transformer中的几种位置编码方案
 
-## 结果
 
+位置编码的介绍与实验结果见 [知乎-位置编码上的一次实验](https://zhuanlan.zhihu.com/p/415020704)。
 
 
 ## 运行
